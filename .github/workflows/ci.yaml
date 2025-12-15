@@ -62,5 +62,6 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: build-artifact
+          path: dist
       - name: Display structure of downloaded files
-        run: ls -R
+        run: ls -lah dist
