@@ -15,20 +15,25 @@ export class GameStateMachine {
     switch (this.state) {
       case 'SETUP':
         if (event === 'START') return (this.state = 'DEAL');
+        if (event === 'RESET') return (this.state = 'SETUP'); // Allow re-reset
         break;
       case 'DEAL':
         if (event === 'READY') return (this.state = 'REVEAL');
+        if (event === 'RESET') return (this.state = 'SETUP');
         break;
       case 'REVEAL':
         if (event === 'NEXT') return (this.state = 'DEAL'); // Loop back for next player
         if (event === 'DONE') return (this.state = 'CLUE'); // All players done
+        if (event === 'RESET') return (this.state = 'SETUP');
         break;
       case 'CLUE':
         // Time up or manual vote trigger
         if (event === 'VOTE') return (this.state = 'VOTE');
+        if (event === 'RESET') return (this.state = 'SETUP');
         break;
       case 'VOTE':
         if (event === 'TALLY') return (this.state = 'RESULT');
+        if (event === 'RESET') return (this.state = 'SETUP');
         break;
       case 'RESULT':
         if (event === 'NEXT_ROUND') return (this.state = 'CLUE');
