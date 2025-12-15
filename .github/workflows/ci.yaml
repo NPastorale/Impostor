@@ -55,6 +55,9 @@ jobs:
       - build
       - test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -75,13 +78,9 @@ jobs:
         uses: docker/setup-buildx-action@v3
       - name: Lowercase Repo Name
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
-      - name: Debug
-        run: |
-          pwd
-          ls -lah
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ env.REPO }}/impostor2:latest
+          tags: ghcr.io/${{ env.REPO }}:latest
