@@ -16,6 +16,11 @@ jobs:
         run: bun install --frozen-lockfile
       - name: Build
         run: bun run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: build-artifact
+          path: dist
 
   secret-detection:
     name: gitleaks
@@ -43,3 +48,19 @@ jobs:
         run: bun install --frozen-lockfile
       - name: Test
         run: bun run test run
+
+  containerize:
+    name: Containerize
+    needs:
+      - build
+      - test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Download Artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: build-artifact
+      - name: Display structure of downloaded files
+        run: ls -R
