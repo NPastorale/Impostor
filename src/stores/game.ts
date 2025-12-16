@@ -11,7 +11,7 @@ function createGameStore() {
   const settings = writable<GameSettings>({
     impostorCount: 1,
     rounds: 1,
-    language: 'en',
+    language: 'es',
     timerSeconds: 0,
     impostorMode: 'no-word'
   });
