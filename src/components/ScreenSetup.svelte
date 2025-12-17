@@ -4,6 +4,7 @@
 
   const { players, settings } = game;
   let newPlayerName = '';
+  let showRules = false;
 
   function addPlayer() {
     if (newPlayerName.trim()) {
@@ -30,8 +31,58 @@
     <h1 class="text-4xl font-black bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
       IMPOSTOR
     </h1>
-    <p class="text-slate-400">Mai es siempre la impostora EDITION</p>
+    <p class="text-slate-400">Mai pierde EDITION</p>
+    <button
+      onclick={() => showRules = true}
+      class="text-xs text-purple-400 hover:text-purple-300 underline mt-2"
+    >
+      ¿Cómo jugar?
+    </button>
   </div>
+
+  {#if showRules}
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" transition:fade>
+      <div class="glass max-w-md w-full p-6 rounded-2xl shadow-2xl space-y-4 max-h-[80vh] overflow-y-auto" transition:slide>
+        <div class="flex justify-between items-center sticky top-0 bg-transparent">
+          <h2 class="text-2xl font-bold text-white">Reglas del Juego</h2>
+          <button onclick={() => showRules = false} class="text-slate-400 hover:text-white p-2 text-xl">✕</button>
+        </div>
+
+        <div class="space-y-4 text-slate-300 text-sm leading-relaxed">
+          <section>
+            <h3 class="font-bold text-purple-400 mb-1">1. Preparación</h3>
+            <p>Se juega en ronda. Uno (o más) va a ser el <span class="text-red-400 font-bold">Impostor</span>. El resto son <span class="text-blue-400 font-bold">Civiles</span>.</p>
+          </section>
+
+          <section>
+            <h3 class="font-bold text-purple-400 mb-1">2. La Palabra Secreta</h3>
+            <p>Todos los Civiles ven la misma palabra secreta. El Impostor ve solamente "SOS EL IMPOSTOR".</p>
+          </section>
+
+          <section>
+            <h3 class="font-bold text-purple-400 mb-1">3. El Juego</h3>
+            <p>Por turnos, cada uno tiene que decir una palabra o frase corta relacionada con la palabra secreta. <br/><em class="text-slate-500">Ejemplo: Si la palabra es "Playa", podrías tirar "Arena" o "Calor".</em></p>
+            <p class="mt-2 text-xs bg-white/5 p-2 rounded">⚠️ <strong>Ojo:</strong> Si sos muy obvio, el Impostor la va a sacar al toque. Si sos muy vago, van a pensar que el Impostor sos vos. Si te llamás Maia tenés más probabilidades de perder.</p>
+          </section>
+
+          <section>
+            <h3 class="font-bold text-purple-400 mb-1">4. Objetivo</h3>
+            <ul class="list-disc list-inside space-y-1 ml-1">
+              <li><span class="text-blue-400">Civiles:</span> Descubrir quién es el Impostor y votarlo para eliminarlo.</li>
+              <li><span class="text-red-400">Impostor:</span> Pasar desapercibido, caretearla que sabés la palabra, o adivinar cuál es la palabra secreta.</li>
+            </ul>
+          </section>
+        </div>
+
+        <button
+          onclick={() => showRules = false}
+          class="w-full mt-4 bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-xl transition-all"
+        >
+          Al toke!
+        </button>
+      </div>
+    </div>
+  {/if}
 
   <!-- Player List -->
   <div class="glass rounded-xl p-4 space-y-4">
