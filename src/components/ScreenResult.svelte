@@ -2,7 +2,7 @@
   import { game } from '../stores/game';
   import { fade, scale } from 'svelte/transition';
 
-  const { players, state, currentSecretWord } = game;
+  const { players, state, currentSecretWord, settings } = game;
 
   // Determine winner
   // Determine winner
@@ -44,9 +44,15 @@
         </h1>
         <p class="text-xl text-slate-300">El impostor fue atrapado.</p>
       {:else}
-        <h1 class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500" in:scale>
-            GANÓ EL IMPOSTOR!
-        </h1>
+        {#if $settings.impostorCount > 1}
+            <h1 class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500" in:scale>
+                GANARON LOS IMPOSTORES!
+            </h1>
+        {:else}
+            <h1 class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500" in:scale>
+                GANÓ EL IMPOSTOR!
+            </h1>
+        {/if}
         <p class="text-xl text-slate-300">Un civil inocente fue eliminado.</p>
       {/if}
   </div>
