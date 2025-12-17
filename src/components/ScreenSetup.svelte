@@ -6,6 +6,11 @@
   let newPlayerName = '';
   let showRules = false;
 
+  $: maxImpostors = Math.max(1, Math.floor($players.length / 3));
+  $: if ($settings.impostorCount > maxImpostors) {
+    game.updateSettings({ impostorCount: maxImpostors });
+  }
+
   function addPlayer() {
     if (newPlayerName.trim()) {
       game.addPlayer(newPlayerName.trim());
@@ -133,7 +138,10 @@
         >-</button>
         <span class="w-4 text-center">{$settings.impostorCount}</span>
         <button
-            onclick={() => game.updateSettings({ impostorCount: Math.min($players.length - 1 || 1, $settings.impostorCount + 1) })}
+            onclick={() => {
+                const max = Math.max(1, Math.floor($players.length / 3));
+                game.updateSettings({ impostorCount: Math.min(max, $settings.impostorCount + 1) });
+            }}
             class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 text-xl font-bold"
         >+</button>
       </div>
