@@ -66,7 +66,7 @@
 
           <section>
             <h3 class="font-bold text-nord-8 mb-1">3. El Juego</h3>
-            <p>Por turnos, cada uno tiene que decir una palabra o frase corta relacionada con la palabra secreta. <br/><em class="text-nord-3">Ejemplo: Si la palabra es "Playa", podrías tirar "Arena" o "Calor".</em></p>
+            <p>Por turnos, cada uno tiene que decir una palabra o frase corta relacionada con la palabra secreta. <br/><em class="text-nord-14">Ejemplo: Si la palabra es "Playa", podrías tirar "Arena" o "Calor".</em></p>
             <p class="mt-2 text-xs bg-nord-2 p-2 rounded">⚠️ <strong>Ojo:</strong> Si sos muy obvio, el Impostor la va a sacar al toque. Si sos muy vago, van a pensar que el Impostor sos vos. Si te llamás Maia tenés más probabilidades de perder.</p>
           </section>
 
