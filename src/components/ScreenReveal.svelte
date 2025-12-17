@@ -81,7 +81,7 @@
       <button
         onclick={handleNext}
         disabled={!hasRevealedOnce}
-        class="w-full bg-nord-3 hover:bg-nord-2 text-nord-6 font-bold py-4 rounded-xl text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-nord-2"
+        class="w-full bg-gradient-to-r from-nord-10 to-nord-9 hover:from-nord-9 hover:to-nord-8 text-nord-1 font-bold py-4 rounded-xl text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-none disabled:bg-nord-3 shadow-lg"
       >
         {nextPlayer ? `Pasar a ${nextPlayer.name}` : 'Arrancar'}
       </button>
