@@ -28,17 +28,28 @@ function createGameStore() {
     roundNumber,
 
     // Actions
-    addPlayer: (name: string) => {
+    addPlayer: (name: string): boolean => {
+      const normalizedName = name.trim();
+      if (!normalizedName) return false;
+
+      const currentPlayers = get(players);
+      const isDuplicate = currentPlayers.some(p => p.name.toLowerCase() === normalizedName.toLowerCase());
+
+      if (isDuplicate) {
+        return false;
+      }
+
       players.update(p => [
         ...p,
         {
           id: crypto.randomUUID(),
-          name,
+          name: normalizedName,
           role: 'civilian',
           isEliminated: false,
           voteCount: 0
         }
       ]);
+      return true;
     },
     removePlayer: (id: string) => {
       players.update(p => p.filter(pl => pl.id !== id));

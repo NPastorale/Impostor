@@ -5,6 +5,7 @@
   const { players, settings } = game;
   let newPlayerName = '';
   let showRules = false;
+  let errorMessage = '';
 
   $: maxImpostors = Math.max(1, Math.floor($players.length / 3));
   $: if ($settings.impostorCount > maxImpostors) {
@@ -13,9 +14,18 @@
 
   function addPlayer() {
     if (newPlayerName.trim()) {
-      game.addPlayer(newPlayerName.trim());
-      newPlayerName = '';
+      const success = game.addPlayer(newPlayerName.trim());
+      if (success) {
+        newPlayerName = '';
+        errorMessage = '';
+      } else {
+        errorMessage = 'Ya existe ese nombre che!';
+      }
     }
+  }
+
+  function handleInput() {
+    errorMessage = '';
   }
 
   function handleKeydown(e: KeyboardEvent) {
@@ -108,20 +118,26 @@
       {/each}
     </div>
 
-    <div class="flex gap-2">
-      <input
-        type="text"
-        bind:value={newPlayerName}
-        onkeydown={handleKeydown}
-        placeholder="Nombre"
-        class="flex-1 bg-nord-0 border border-nord-2 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-nord-10 transition-all placeholder:text-nord-3 text-nord-6"
-      />
-      <button
-        onclick={addPlayer}
-        class="bg-nord-10 hover:bg-nord-9 text-nord-6 px-4 py-2 rounded-lg font-bold transition-all active:scale-95"
-      >
-        Agregar
-      </button>
+    <div class="flex flex-col gap-2">
+      <div class="flex gap-2">
+        <input
+            type="text"
+            bind:value={newPlayerName}
+            oninput={handleInput}
+            onkeydown={handleKeydown}
+            placeholder="Nombre"
+            class="flex-1 bg-nord-0 border border-nord-2 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-nord-10 transition-all placeholder:text-nord-3 text-nord-6 {errorMessage ? 'border-nord-11 ring-1 ring-nord-11' : ''}"
+        />
+        <button
+            onclick={addPlayer}
+            class="bg-nord-10 hover:bg-nord-9 text-nord-6 px-4 py-2 rounded-lg font-bold transition-all active:scale-95"
+        >
+            Agregar
+        </button>
+      </div>
+      {#if errorMessage}
+        <p class="text-nord-11 text-sm font-bold px-1" transition:slide>{errorMessage}</p>
+      {/if}
     </div>
   </div>
 
