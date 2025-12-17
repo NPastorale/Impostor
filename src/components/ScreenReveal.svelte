@@ -8,6 +8,7 @@
   $: nextPlayer = $players[$currentPlayerIndex + 1];
 
   let isRevealed = false;
+  let hasRevealedOnce = false;
 
   function hide() {
     isRevealed = false;
@@ -19,12 +20,14 @@
     e.preventDefault();
     if (!isRevealed) {
         isRevealed = true;
+        hasRevealedOnce = true;
         if (navigator.vibrate) navigator.vibrate(50);
     }
   }
 
   function handleNext() {
     isRevealed = false;
+    hasRevealedOnce = false; // Reset for next player
     game.nextReveal();
   }
 
@@ -75,15 +78,12 @@
         {/if}
       </div>
 
-      <p class="text-slate-500 text-sm">
-        Soltá para ocultar. Pasale al siguiente.
-      </p>
-
       <button
         onclick={handleNext}
-        class="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 rounded-xl text-lg transition-all"
+        disabled={!hasRevealedOnce}
+        class="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 rounded-xl text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {nextPlayer ? `Pasale a ${nextPlayer.name}` : 'Arrancar'}
+        {nextPlayer ? `Pasar a ${nextPlayer.name}` : 'Arrancar'}
       </button>
     </div>
 
