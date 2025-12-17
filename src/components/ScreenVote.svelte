@@ -26,8 +26,8 @@
 
 <div class="h-full flex flex-col items-center justify-center space-y-8 p-4" in:fade>
   <div class="text-center space-y-2">
-    <h2 class="text-3xl font-bold text-white">Who is the Impostor?</h2>
-    <p class="text-slate-400">Select the player to eliminate.</p>
+    <h2 class="text-3xl font-bold text-white">¿Quién es el Impostor?</h2>
+    <p class="text-slate-400">Seleccioná al jugador para eliminar.</p>
   </div>
 
   <div class="w-full max-w-sm space-y-3">
@@ -52,6 +52,6 @@
     disabled={!selectedPlayerId}
     class="w-full max-w-sm bg-slate-100 hover:bg-white text-black font-bold py-4 rounded-xl text-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all"
   >
-    Eliminate
+    Eliminar
   </button>
 </div>

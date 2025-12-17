@@ -35,9 +35,9 @@
 <div class="h-full flex flex-col items-center justify-center space-y-8 p-4" in:fade>
   <div class="text-center space-y-2">
     <h2 class="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-        Clue Round
+        Ronda de Pistas
     </h2>
-    <p class="text-slate-400">Discuss and find the impostor!</p>
+    <p class="text-slate-400">Debatan y encuentren al impostor!</p>
   </div>
 
   {#if $settings.timerSeconds > 0}
@@ -49,13 +49,13 @@
             onclick={toggleTimer}
             class="bg-white/10 hover:bg-white/20 text-white px-6 py-2 rounded-full font-bold transition-all"
         >
-            {timerActive ? 'Pause' : 'Start Timer'}
+            {timerActive ? 'Pausar' : 'Iniciar Temporizador'}
         </button>
       </div>
   {/if}
 
   <div class="w-full max-w-sm glass rounded-xl p-4">
-    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Alive Players</h3>
+    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Jugadores Vivos</h3>
     <div class="flex flex-wrap gap-2">
         {#each $players.filter(p => !p.isEliminated) as player}
             <div class="bg-white/5 px-3 py-1 rounded-lg text-sm font-medium border border-white/5">
@@ -69,6 +69,6 @@
     onclick={startVoting}
     class="w-full max-w-sm bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-400 hover:to-rose-500 text-white font-bold py-4 rounded-xl text-xl shadow-lg shadow-red-900/20 transition-all"
   >
-    Vote Now
+    Votar Ahora
   </button>
 </div>

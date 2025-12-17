@@ -91,7 +91,7 @@
 
   <!-- Player List -->
   <div class="glass rounded-xl p-4 space-y-4">
-    <h2 class="text-lg font-bold text-slate-200">Players ({$players.length})</h2>
+    <h2 class="text-lg font-bold text-slate-200">Jugadores ({$players.length})</h2>
 
     <div class="space-y-2 max-h-60 overflow-y-auto pr-1">
       {#each $players as player (player.id)}
@@ -100,7 +100,7 @@
           <button
             onclick={() => removePlayer(player.id)}
             class="text-red-400 hover:text-red-300 p-1"
-            aria-label="Remove player"
+            aria-label="Eliminar jugador"
           >
             ✕
           </button>
@@ -113,24 +113,24 @@
         type="text"
         bind:value={newPlayerName}
         onkeydown={handleKeydown}
-        placeholder="Enter player name"
+        placeholder="Nombre"
         class="flex-1 bg-black/20 border border-white/10 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all placeholder:text-slate-600"
       />
       <button
         onclick={addPlayer}
         class="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg font-bold transition-all active:scale-95"
       >
-        Add
+        Agregar
       </button>
     </div>
   </div>
 
   <!-- Settings -->
   <div class="glass rounded-xl p-4 space-y-4">
-    <h2 class="text-lg font-bold text-slate-200">Settings</h2>
+    <h2 class="text-lg font-bold text-slate-200">Configuración</h2>
 
     <div class="flex justify-between items-center">
-      <label for="impostors" class="text-slate-300">Impostors</label>
+      <label for="impostors" class="text-slate-300">Impostores</label>
       <div class="flex items-center gap-3">
         <button
             onclick={() => game.updateSettings({ impostorCount: Math.max(1, $settings.impostorCount - 1) })}
@@ -148,7 +148,7 @@
     </div>
 
     <div class="flex justify-between items-center">
-        <label for="lang" class="text-slate-300">Language</label>
+        <label for="lang" class="text-slate-300">Idioma</label>
         <select
             id="lang"
             bind:value={$settings.language}
@@ -166,6 +166,6 @@
     disabled={$players.length < 3}
     class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-4 rounded-xl text-xl shadow-lg shadow-purple-900/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform active:scale-[0.98]"
   >
-    Start Game
+    Arrancar
   </button>
 </div>

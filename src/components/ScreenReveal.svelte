@@ -53,10 +53,10 @@
             <div in:scale={{duration: 200, start: 0.9}} class="text-center space-y-4 z-10">
                 {#if currentPlayer.role === 'impostor'}
                     <h2 class="text-4xl font-black text-red-500">IMPOSTOR</h2>
-                    <p class="text-slate-300">Blend in. You assume everyone else knows the secret word.</p>
+                    <p class="text-slate-300">Mantené la cara. Asumí que todos los demás saben la palabra.</p>
                 {:else}
                     <h2 class="text-4xl font-black text-emerald-400">{currentPlayer.word}</h2>
-                    <p class="text-slate-300">This is the secret word.</p>
+                    <p class="text-slate-300">Esta es la palabra secreta.</p>
                 {/if}
             </div>
         {:else}
@@ -69,21 +69,21 @@
              >
                 <div class="text-center space-y-4">
                     <span class="text-6xl">👆</span>
-                    <p class="font-bold text-xl text-slate-300">Hold to Reveal</p>
+                    <p class="font-bold text-xl text-slate-300">Mantené para ver</p>
                 </div>
              </div>
         {/if}
       </div>
 
       <p class="text-slate-500 text-sm">
-        Release to hide. Pass to the next player.
+        Soltá para ocultar. Pasale al siguiente.
       </p>
 
       <button
         onclick={handleNext}
         class="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 rounded-xl text-lg transition-all"
       >
-        {nextPlayer ? `Pass to ${nextPlayer.name}` : 'Start Game'}
+        {nextPlayer ? `Pasale a ${nextPlayer.name}` : 'Arrancar'}
       </button>
     </div>
 
