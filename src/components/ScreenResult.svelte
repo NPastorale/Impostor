@@ -5,26 +5,28 @@
   const { players, state, currentSecretWord } = game;
 
   // Determine winner
-  const eliminatedPlayer = $players.find(p => p.isEliminated && !p.role); // Wait, logic needed:
-  // In `voteOut` we set `isEliminated`. To show "Who WON", we check if the eliminated person was impostor.
+  // Determine winner
+  // Logic:
+  // If ALL impostors are eliminated -> Civilians WIN.
+  // If ANY civilian is eliminated -> Impostor WINS (Simplification for MVP, usually game continues until ratio is met, but simpler here: if you vote wrong, you lose).
 
-  // We need to know WHO was just eliminated to show their card.
-  // Actually, let's filter the MOST RECENTLY eliminated player?
-  // or just check the game state.
-  // Let's assume `game.voteOut` sets the state and we can calculate from `players`.
-  // BUT `voteOut` marks them eliminated.
+  const allImpostors = $players.filter(p => p.role === 'impostor');
+  const eliminatedImpostors = allImpostors.filter(p => p.isEliminated);
+  const remainingImpostors = allImpostors.length - eliminatedImpostors.length;
+
+  const eliminatedCivilians = $players.filter(p => p.role === 'civilian' && p.isEliminated);
 
   let winner: 'civilians' | 'impostor' | null = null;
-  let recentVictim = $players.find(p => p.isEliminated); // This is weak if multiple rounds.
-  // We need a better way to track "Latest Victim".
-  // For MVP with 1 round, this is fine.
 
-  if (recentVictim) {
-      if (recentVictim.role === 'impostor') {
-          winner = 'civilians';
-      } else {
-          winner = 'impostor'; // Simplified: If civilian dies, Impostor wins immediately (or gets to guess - not implemented for MVP speed)
-      }
+  if (remainingImpostors === 0) {
+      winner = 'civilians';
+  } else if (eliminatedCivilians.length > 0) {
+      winner = 'impostor';
+  } else {
+      // This shouldn't happen in single-round vote-out MVP unless we skipped voting.
+      // But if we support multiple rounds, game would continue.
+      // For now, assume Game Over on any elimination.
+      winner = 'impostor';
   }
 
   function playAgain() {

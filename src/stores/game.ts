@@ -111,20 +111,10 @@ function createGameStore() {
             state.set(newState);
         }
     },
-    voteOut: (playerId: string) => {
+    voteOut: (playerIds: string[]) => {
         players.update(all => all.map(p =>
-            p.id === playerId ? { ...p, isEliminated: true } : p
+            playerIds.includes(p.id) ? { ...p, isEliminated: true } : p
         ));
-        const newState = fsm.transition('VOTE'); // CLUE -> VOTE
-        // Wait, VOTE state is for 'Voting' phase, result is RESULT.
-        // My FSM says CLUE -> VOTE -> RESULT.
-        // ScreenVote calls voteOut.
-        // If ScreenVote is the VOTE state.
-
-        // Actually:
-        // CLUE -> (User clicks Vote) -> transition('VOTE') -> VOTE Screen.
-        // VOTE Screen -> (Selects user, clicks Eliminate) -> voteOut() -> transition('TALLY') -> RESULT.
-
         const nextState = fsm.transition('TALLY');
         state.set(nextState);
     }
