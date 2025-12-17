@@ -10,7 +10,7 @@
   const debug = new URLSearchParams(window.location.search).get('debug') === '1';
 </script>
 
-<main class="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-4 selection:bg-purple-500 relative">
+<main class="min-h-screen bg-nord-0 text-nord-6 flex flex-col items-center justify-center p-4 selection:bg-nord-9 relative">
   <div class="w-full max-w-md">
     {#if $state === 'SETUP'}
       <ScreenSetup />

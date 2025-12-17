@@ -48,22 +48,22 @@
 
     <!-- Reveal UI -->
     <div class="text-center space-y-8 w-full max-w-sm">
-      <h1 class="text-3xl font-bold text-white max-w-full truncate px-4">{currentPlayer.name}</h1>
+      <h1 class="text-3xl font-bold text-nord-6 max-w-full truncate px-4">{currentPlayer.name}</h1>
 
-      <div class="glass p-8 rounded-2xl min-h-[300px] flex flex-col items-center justify-center relative overflow-hidden select-none">
+      <div class="bg-nord-1 border border-nord-2 p-8 rounded-2xl min-h-[300px] flex flex-col items-center justify-center relative overflow-hidden select-none shadow-xl">
 
         {#if isRevealed}
             <div in:scale={{duration: 200, start: 0.9}} class="text-center space-y-4 z-10">
                 {#if currentPlayer.role === 'impostor'}
-                    <h2 class="text-4xl font-black text-red-500">IMPOSTOR</h2>
-                    <p class="text-slate-300">Mantené la cara. Asumí que todos los demás saben la palabra.</p>
+                    <h2 class="text-4xl font-black text-nord-11">IMPOSTOR</h2>
+                    <p class="text-nord-4">Mantené la cara. Asumí que todos los demás saben la palabra.</p>
                 {:else}
-                    <h2 class="text-4xl font-black text-emerald-400">{currentPlayer.word}</h2>
-                    <p class="text-slate-300">Esta es la palabra secreta.</p>
+                    <h2 class="text-4xl font-black text-nord-14">{currentPlayer.word}</h2>
+                    <p class="text-nord-4">Esta es la palabra secreta.</p>
                 {/if}
             </div>
         {:else}
-             <div class="absolute inset-0 bg-slate-800 flex items-center justify-center z-20 cursor-pointer focus:outline-none focus:ring-4 focus:ring-purple-500/50"
+             <div class="absolute inset-0 bg-nord-1 flex items-center justify-center z-20 cursor-pointer focus:outline-none focus:ring-4 focus:ring-nord-10/50"
                   role="button"
                   tabindex="0"
                   onmousedown={reveal}
@@ -72,7 +72,7 @@
              >
                 <div class="text-center space-y-4">
                     <span class="text-6xl">👆</span>
-                    <p class="font-bold text-xl text-slate-300">Mantené para ver</p>
+                    <p class="font-bold text-xl text-nord-4">Mantené para ver</p>
                 </div>
              </div>
         {/if}
@@ -81,7 +81,7 @@
       <button
         onclick={handleNext}
         disabled={!hasRevealedOnce}
-        class="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 rounded-xl text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        class="w-full bg-nord-3 hover:bg-nord-2 text-nord-6 font-bold py-4 rounded-xl text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed border border-nord-2"
       >
         {nextPlayer ? `Pasar a ${nextPlayer.name}` : 'Arrancar'}
       </button>
