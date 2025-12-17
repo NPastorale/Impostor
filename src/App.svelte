@@ -6,7 +6,7 @@
   import ScreenVote from './components/ScreenVote.svelte';
   import ScreenResult from './components/ScreenResult.svelte';
 
-  const { state } = game;
+  const { state, players, currentSecretWord } = game;
   const debug = new URLSearchParams(window.location.search).get('debug') === '1';
 </script>
 
@@ -28,9 +28,9 @@
   {#if debug}
       <div class="fixed top-0 left-0 bg-black/80 p-2 text-xs text-green-400 font-mono pointer-events-none z-50">
         <p>State: {$state}</p>
-        <p>Word: {$game.currentSecretWord}</p>
+        <p>Word: {$currentSecretWord}</p>
         <ul>
-            {#each $game.players as p}
+            {#each $players as p}
                 <li>{p.name}: {p.role} {p.isEliminated ? '(DEAD)' : ''}</li>
             {/each}
         </ul>
