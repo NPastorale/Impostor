@@ -38,9 +38,8 @@
 </script>
 
 <svelte:window
-  onmouseup={hide}
-  ontouchend={hide}
-  ontouchcancel={hide}
+  onpointerup={hide}
+  onpointercancel={hide}
   onblur={hide}
 />
 
@@ -48,7 +47,9 @@
 
     <!-- Reveal UI -->
     <div class="text-center space-y-8 w-full max-w-sm">
-      <h1 class="text-3xl font-bold text-nord-6 max-w-full truncate px-4">{currentPlayer.name}</h1>
+      <h1 class="text-5xl font-black bg-gradient-to-r from-nord-9 to-nord-7 bg-clip-text text-transparent max-w-full truncate px-4 leading-tight py-2">
+        {currentPlayer.name}
+      </h1>
 
       <div class="bg-nord-1 border border-nord-2 p-8 rounded-2xl min-h-[300px] flex flex-col items-center justify-center relative overflow-hidden select-none shadow-xl">
 
@@ -63,12 +64,12 @@
                 {/if}
             </div>
         {:else}
-             <div class="absolute inset-0 bg-nord-1 flex items-center justify-center z-20 cursor-pointer focus:outline-none focus:ring-4 focus:ring-nord-10/50"
+             <div class="absolute inset-0 bg-nord-1 flex items-center justify-center z-20 cursor-pointer focus:outline-none focus:ring-4 focus:ring-nord-10/50 touch-none select-none"
                   role="button"
                   tabindex="0"
-                  onmousedown={reveal}
-                  ontouchstart={reveal}
+                  onpointerdown={reveal}
                   onkeydown={reveal}
+                  oncontextmenu={(e) => e.preventDefault()}
              >
                 <div class="text-center space-y-4">
                     <span class="text-6xl">👆</span>
